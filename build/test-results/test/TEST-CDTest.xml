@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CDTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-10-16T02:05:03" hostname="DESKTOP-AQHJ5SD" time="0.039">
+  <properties/>
+  <testcase name="cd_account_has_an_amount()" classname="CDTest" time="0.031"/>
+  <testcase name="withdraw_more_than_cd_account_balance()" classname="CDTest" time="0.002"/>
+  <testcase name="cd_account_has_a_name()" classname="CDTest" time="0.001"/>
+  <testcase name="withdraw_from_cd_account()" classname="CDTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
