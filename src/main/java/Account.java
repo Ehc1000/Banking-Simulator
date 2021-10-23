@@ -1,16 +1,29 @@
 public class Account {
     private String name;
+    private String id;
     private double apr;
     private double balance;
 
-    public Account(String name, double apr, double balance) {
+    public Account(String name, String id, double apr, double balance) {
         this.name = name;
+        this.id = id;
         this.apr = apr;
         this.balance = balance;
     }
 
+    public Account(String name, String id, double apr) {
+        this.name = name;
+        this.id = id;
+        this.apr = apr;
+        this.balance = 0;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public double getRate() {

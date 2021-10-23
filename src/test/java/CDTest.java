@@ -8,7 +8,7 @@ public class CDTest {
 
     @BeforeEach
     void setUp() {
-        account = new CDAccount("CD", 4.0, 5000);
+        account = new CDAccount("CD", "12345679", 4.0, 5000);
     }
 
     @Test

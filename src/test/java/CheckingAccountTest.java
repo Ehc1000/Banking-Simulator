@@ -8,7 +8,7 @@ public class CheckingAccountTest {
 
     @BeforeEach
     void setUp() {
-        account = new CheckingAccount("Checking", 5.0, 0);
+        account = new CheckingAccount("Checking", "12345678", 5.0);
     }
 
     @Test

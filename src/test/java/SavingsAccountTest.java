@@ -8,7 +8,7 @@ public class SavingsAccountTest {
 
     @BeforeEach
     void setUp() {
-        account = new SavingsAccount("Savings", 7.0, 0.0);
+        account = new SavingsAccount("Savings", "98765432", 7.0);
     }
 
     @Test

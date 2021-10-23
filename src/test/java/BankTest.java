@@ -19,22 +19,24 @@ public class BankTest {
 
     @Test
     void add_account_to_bank() {
-        bank.addAccount("12345678", "Checking", 5.0, 0.0);
+        bank.addAccount("12345678", "Checking", 5.0);
         assertEquals(5.0, bank.getAccounts().get("12345678").getRate());
+        assertEquals("12345678", bank.getAccounts().get("12345678").getId());
     }
 
     @Test
     void add_multiple_accounts_to_bank() {
-        bank.addAccount("12345678", "Checking", 5.0, 0.0);
-        bank.addAccount("23456789", "Savings", 1.5, 0.0);
+        bank.addAccount("12345678", "Checking", 5.0);
+        bank.addAccount("23456789", "Savings", 1.5);
         assertEquals(1.5, bank.getAccounts().get("23456789").getRate());
+        assertEquals("23456789", bank.getAccounts().get("23456789").getId());
     }
 
     @Test
     void deposit_into_account_in_bank() {
-        bank.addAccount("12345678", "Checking", 7.5, 0.0);
-        bank.getAccounts().get("12345678").deposit(2000);
-        assertEquals(2000, bank.getAccounts().get("12345678").getBalance());
+        bank.addAccount("98765432", "Savings", 7.5);
+        bank.getAccounts().get("98765432").deposit(2000);
+        assertEquals(2000, bank.getAccounts().get("98765432").getBalance());
     }
 
     @Test

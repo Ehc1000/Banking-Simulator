@@ -1,5 +1,8 @@
 public class CheckingAccount extends Account {
-    public CheckingAccount(String name, double apr, double balance) {
-        super(name, apr, balance);
+    public CheckingAccount(String name, String id, double apr) {
+        super(name, id, apr);
     }
+
+
 }
+

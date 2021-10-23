@@ -3,7 +3,6 @@ import java.util.Map;
 
 public class Bank {
     private Map<String, Account> accounts;
-    private String Id;
 
     Bank() {
         accounts = new HashMap<>();
@@ -13,8 +12,11 @@ public class Bank {
         return accounts;
     }
 
-    public void addAccount(String Id, String name, Double apr, Double balance) {
-        accounts.put(Id, new Account(name, apr, balance));
+    public void addAccount(String id, String name, double apr, double balance) {
+        accounts.put(id, new Account(name, id, apr, balance));
     }
 
+    public void addAccount(String id, String name, double apr) {
+        accounts.put(id, new Account(name, id, apr, 0));
+    }
 }
