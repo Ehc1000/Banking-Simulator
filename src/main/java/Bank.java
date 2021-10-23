@@ -17,6 +17,6 @@ public class Bank {
     }
 
     public void addAccount(String id, String name, double apr) {
-        accounts.put(id, new Account(name, id, apr, 0));
+        accounts.put(id, new Account(name, id, apr));
     }
 }

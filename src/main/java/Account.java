@@ -15,7 +15,6 @@ public class Account {
         this.name = name;
         this.id = id;
         this.apr = apr;
-        this.balance = 0;
     }
 
     public String getName() {

@@ -40,9 +40,26 @@ public class BankTest {
     }
 
     @Test
+    void deposit_twice_into_account_in_bank() {
+        bank.addAccount("98765432", "Savings", 7.5);
+        bank.getAccounts().get("98765432").deposit(2000);
+        bank.getAccounts().get("98765432").deposit(3000);
+        assertEquals(5000, bank.getAccounts().get("98765432").getBalance());
+    }
+
+    @Test
     void withdraw_from_account_in_bank() {
         bank.addAccount("34567890", "CD", 9.5, 6000.00);
         bank.getAccounts().get("34567890").withdraw(4000);
         assertEquals(2000.00, bank.getAccounts().get("34567890").getBalance());
+    }
+
+    @Test
+    void withdraw_twice_from_account_in_bank() {
+        bank.addAccount("12345678", "Checking", 6.5);
+        bank.getAccounts().get("12345678").deposit(3000);
+        bank.getAccounts().get("12345678").withdraw(1000);
+        bank.getAccounts().get("12345678").withdraw(200);
+        assertEquals(1800, bank.getAccounts().get("12345678").getBalance());
     }
 }
