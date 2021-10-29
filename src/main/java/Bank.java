@@ -19,4 +19,11 @@ public class Bank {
     public void addAccount(String id, String name, double apr) {
         accounts.put(id, new Account(name, id, apr));
     }
+
+    public boolean accountExistsByID(String Id) {
+        if (accounts.get(Id) != null) {
+            return true;
+        }
+        return false;
+    }
 }
