@@ -15,15 +15,28 @@ public class IdTest {
     }
 
     @Test
-    void id_is_valid() {
-        boolean actual = idValidator.validate("create checking 12345678 5.0");
+    void id_is_valid_for_creation() {
+        boolean actual = idValidator.validateCreation("create checking 12345678 5.0");
         assertTrue(actual);
     }
 
     @Test
-    void duplicate_id_is_not_unique() {
+    void duplicate_id_is_not_unique_for_creation() {
         bank.addAccount("12345678", "Checking", 5.0);
-        boolean actual = idValidator.validate("create checking 12345678 5.0");
+        boolean actual = idValidator.validateCreation("create checking 12345678 5.0");
+        assertFalse(actual);
+    }
+
+    @Test
+    void id_exists_for_deposit() {
+        bank.addAccount("12345678", "Checking", 5.0);
+        boolean actual = idValidator.validateDeposit("deposit checking 12345678 5.0 300");
+        assertTrue(actual);
+    }
+
+    @Test
+    void deposit_with_nonexistent_id() {
+        boolean actual = idValidator.validateDeposit("deposit checking 12345678 5.0 300");
         assertFalse(actual);
     }
 
