@@ -9,9 +9,8 @@ public class IdValidator {
     public boolean validate(String command) {
         if (bank.accountExistsByID("12345678")) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     public boolean validateId(String command) {
