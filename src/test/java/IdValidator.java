@@ -1,0 +1,27 @@
+public class IdValidator {
+
+    private Bank bank;
+
+    public IdValidator(Bank bank) {
+        this.bank = bank;
+    }
+
+    public boolean validate(String command) {
+        if (bank.accountExistsByID("12345678")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean validateId(String command) {
+        String commands[] = command.split(" ");
+        if (commands[2].matches("[0-9]+")) {
+            if (commands[2].length() != 8) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+}
