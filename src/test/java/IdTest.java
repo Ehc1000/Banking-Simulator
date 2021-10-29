@@ -38,4 +38,11 @@ public class IdTest {
         boolean actual = idValidator.validateId("create checking 123456789 5.0");
         assertFalse(actual);
     }
+
+    @Test
+    void id_is_missing_from_command() {
+        boolean actual = idValidator.validateId("create checking 5.0");
+        assertFalse(actual);
+    }
+
 }
