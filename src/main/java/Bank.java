@@ -13,11 +13,16 @@ public class Bank {
     }
 
     public void addAccount(String id, String name, double apr, double balance) {
-        accounts.put(id, new Account(name, id, apr, balance));
+        accounts.put(id, new CDAccount(name, id, apr, balance));
     }
 
     public void addAccount(String id, String name, double apr) {
-        accounts.put(id, new Account(name, id, apr));
+        if (name.equalsIgnoreCase("checking")) {
+            accounts.put(id, new CheckingAccount(name, id, apr));
+        }
+        if (name.equalsIgnoreCase("savings")) {
+            accounts.put(id, new SavingsAccount(name, id, apr));
+        }
     }
 
     public boolean accountExistsByID(String Id) {

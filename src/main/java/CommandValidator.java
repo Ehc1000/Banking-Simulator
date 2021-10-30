@@ -29,11 +29,14 @@ public class CommandValidator {
                     }
                     return false;
                 }
+                return false;
+            }
+            if (commands.length == 5) {
                 if (accountType.equalsIgnoreCase("cd")) {
                     if (validateCreationForCD(command)) {
                         return true;
                     }
-                    return true;
+                    return false;
                 }
                 return false;
             }
@@ -166,14 +169,14 @@ public class CommandValidator {
     }
 
     private boolean validateCreation(String id) {
-        if (bank.accountExistsByID("12345678")) {
+        if (bank.accountExistsByID(id)) {
             return false;
         }
         return true;
     }
 
     private boolean validateDeposit(String id) {
-        if (bank.accountExistsByID("12345678")) {
+        if (bank.accountExistsByID(id)) {
             return true;
         }
         return false;

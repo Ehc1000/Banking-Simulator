@@ -53,8 +53,15 @@ public class CommandValidatorTest {
     }
 
     @Test
-    void id_is_missing_from_command() {
+    void id_is_missing_from_command_for_create() {
         boolean actual = commandValidator.validate("create checking 5.0");
+        assertFalse(actual);
+    }
+
+    @Test
+    void id_is_missing_from_command_for_deposit() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 600");
         assertFalse(actual);
     }
 
@@ -182,5 +189,120 @@ public class CommandValidatorTest {
     void deposit_is_missing() {
         bank.addAccount("12345678", "checking", 5.0);
         boolean actual = commandValidator.validate("12345678 500");
+        assertFalse(actual);
     }
+
+    @Test
+    void depositing_into_account_without_specifying_amount() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678");
+        assertFalse(actual);
+    }
+
+    @Test
+    void create_cd_is_valid() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0 5000");
+        assertTrue(actual);
+    }
+
+    @Test
+    void create_cd_with_amount_on_boundaries() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0 1000");
+        boolean actual_two = commandValidator.validate("create cd 12345678 5.0 10000");
+        assertTrue(actual);
+        assertTrue(actual_two);
+    }
+
+    @Test
+    void create_cd_with_amount_that_is_out_of_range() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0 15000");
+        assertFalse(actual);
+    }
+
+    @Test
+    void create_cd_with_negative_amount() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0 -500");
+        assertFalse(actual);
+    }
+
+    @Test
+    void create_cd_where_amount_is_not_a_number() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0 abc");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_valid_amount_into_checking() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678 500");
+        assertTrue(actual);
+    }
+
+    @Test
+    void deposit_amount_on_boundaries_into_checking() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678 0");
+        boolean actual_two = commandValidator.validate("deposit 12345678 1000");
+        assertTrue(actual);
+        assertTrue(actual_two);
+    }
+
+    @Test
+    void deposit_negative_amount_into_checking() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678 -300");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_amount_out_of_range_into_checking() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678 2000");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_amount_not_a_number_into_checking() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678 abc");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_valid_amount_into_savings() {
+        bank.addAccount("98765432", "savings", 7.0);
+        boolean actual = commandValidator.validate("deposit 98765432 500");
+        assertTrue(actual);
+    }
+
+    @Test
+    void deposit_amount_on_boundaries_into_savings() {
+        bank.addAccount("98765432", "savings", 7.0);
+        boolean actual = commandValidator.validate("deposit 98765432 0");
+        boolean actual_two = commandValidator.validate("deposit 98765432 2500");
+        assertTrue(actual);
+        assertTrue(actual_two);
+    }
+
+    @Test
+    void deposit_negative_amount_into_savings() {
+        bank.addAccount("98765432", "savings", 7.0);
+        boolean actual = commandValidator.validate("deposit 98765432 -400");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_amount_out_of_range_into_savings() {
+        bank.addAccount("98765432", "savings", 7.0);
+        boolean actual = commandValidator.validate("deposit 98765432 4000");
+        assertFalse(actual);
+    }
+
+    @Test
+    void try_depositing_into_a_cd() {
+        bank.addAccount("12345678", "cd", 5.0, 2000);
+        boolean actual = commandValidator.validate("deposit 12345678 5000");
+        assertFalse(actual);
+    }
+
 }

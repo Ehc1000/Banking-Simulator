@@ -1,4 +1,4 @@
-public class Account {
+public abstract class Account {
     private String name;
     private String id;
     private double apr;
