@@ -26,4 +26,20 @@ public class Bank {
         }
         return false;
     }
+
+    public boolean addAmount(String id, Double value) {
+        if (accounts.get(id).getName().equalsIgnoreCase("checking")) {
+            if (value >= 0.0 && value <= 1000.00) {
+                return true;
+            }
+            return false;
+        }
+        if (accounts.get(id).getName().equalsIgnoreCase("savings")) {
+            if (value >= 0.0 && value <= 2500.00) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }
