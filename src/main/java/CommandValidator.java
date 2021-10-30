@@ -115,7 +115,7 @@ public class CommandValidator {
         }
         Double value = Double.parseDouble(amount);
         if (bank.accountExistsByID(id)) {
-            if (bank.addAmount(id, value)) {
+            if (bank.checkAmount(id, value)) {
                 return true;
             }
             return false;

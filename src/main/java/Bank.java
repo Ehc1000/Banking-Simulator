@@ -32,7 +32,7 @@ public class Bank {
         return false;
     }
 
-    public boolean addAmount(String id, Double value) {
+    public boolean checkAmount(String id, Double value) {
         if (accounts.get(id).getName().equalsIgnoreCase("checking")) {
             if (value >= 0.0 && value <= 1000.00) {
                 return true;
