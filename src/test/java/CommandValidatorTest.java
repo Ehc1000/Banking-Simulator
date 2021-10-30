@@ -193,13 +193,6 @@ public class CommandValidatorTest {
     }
 
     @Test
-    void depositing_into_account_without_specifying_amount() {
-        bank.addAccount("12345678", "checking", 5.0);
-        boolean actual = commandValidator.validate("deposit 12345678");
-        assertFalse(actual);
-    }
-
-    @Test
     void create_cd_is_valid() {
         boolean actual = commandValidator.validate("create cd 12345678 5.0 5000");
         assertTrue(actual);
@@ -228,6 +221,19 @@ public class CommandValidatorTest {
     @Test
     void create_cd_where_amount_is_not_a_number() {
         boolean actual = commandValidator.validate("create cd 12345678 5.0 abc");
+        assertFalse(actual);
+    }
+
+    @Test
+    void create_cd_without_specifying_amount() {
+        boolean actual = commandValidator.validate("create cd 12345678 5.0");
+        assertFalse(actual);
+    }
+
+    @Test
+    void depositing_into_account_without_specifying_amount() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = commandValidator.validate("deposit 12345678");
         assertFalse(actual);
     }
 
