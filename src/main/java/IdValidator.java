@@ -22,8 +22,9 @@ public class IdValidator {
 
     public boolean validateId(String command) {
         String commands[] = command.split(" ");
-        if (commands[2].matches("[0-9]+")) {
-            if (commands[2].length() != 8) {
+        String id = commands[2];
+        if (id.matches("[0-9]+")) {
+            if (id.length() != 8) {
                 return false;
             }
             return true;

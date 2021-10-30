@@ -14,7 +14,7 @@ public class TypeTest {
 
     @Test
     void account_type_is_valid() {
-        boolean actual = typeValidator.validateType("create cd 12345678 7.0");
+        boolean actual = typeValidator.validateType("create cd 12345678 7.0 5000");
         boolean actual_two = typeValidator.validateType("create savings 98765432 9.0");
         assertTrue(actual);
         assertTrue(actual_two);

@@ -1,11 +1,12 @@
 public class TypeValidator {
     public boolean validateType(String command) {
         String commands[] = command.split(" ");
-        if (commands[1].equalsIgnoreCase("checking")) {
+        String accountType = commands[1];
+        if (accountType.equalsIgnoreCase("checking")) {
             return true;
-        } else if (commands[1].equalsIgnoreCase("savings")) {
+        } else if (accountType.equalsIgnoreCase("savings")) {
             return true;
-        } else if (commands[1].equalsIgnoreCase("cd")) {
+        } else if (accountType.equalsIgnoreCase("cd")) {
             return true;
         } else {
             return false;
