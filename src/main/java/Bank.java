@@ -25,26 +25,18 @@ public class Bank {
         }
     }
 
-    public boolean accountExistsByID(String Id) {
-        if (accounts.get(Id) != null) {
+    public boolean accountExistsByID(String id) {
+        if (accounts.get(id) != null) {
             return true;
         }
         return false;
     }
 
     public boolean checkAmount(String id, Double value) {
-        if (accounts.get(id).getName().equalsIgnoreCase("checking")) {
-            if (value >= 0.0 && value <= 1000.00) {
-                return true;
-            }
-            return false;
-        }
-        if (accounts.get(id).getName().equalsIgnoreCase("savings")) {
-            if (value >= 0.0 && value <= 2500.00) {
-                return true;
-            }
-            return false;
+        if (accounts.get(id).checkDepositAmount(value)) {
+            return true;
         }
         return false;
     }
+
 }

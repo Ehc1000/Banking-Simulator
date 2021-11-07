@@ -43,5 +43,7 @@ public abstract class Account {
             balance = 0;
         }
     }
+
+    public abstract boolean checkDepositAmount(double value);
 }
 
