@@ -1,4 +1,4 @@
-public class Account {
+public abstract class Account {
     private String name;
     private String id;
     private double apr;
@@ -43,5 +43,7 @@ public class Account {
             balance = 0;
         }
     }
+
+    public abstract boolean checkDepositAmount(double value);
 }
 
