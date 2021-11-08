@@ -7,13 +7,14 @@ public class CreateProcessor extends CommandProcessor {
     @Override
     public void execute(String command) {
         String commands[] = command.split(" ");
-        String accountType = commands[1];
-        if (accountType.equalsIgnoreCase("cd")) {
+        if (commands.length == 5) {
+            String accountType = commands[1];
             String id = commands[2];
             Double apr = Double.parseDouble(commands[3]);
             Double amount = Double.parseDouble(commands[4]);
             createCd(accountType, id, apr, amount);
         }
+        String accountType = commands[1];
         String id = commands[2];
         Double apr = Double.parseDouble(commands[3]);
         createCheckingOrSavings(accountType, id, apr);
