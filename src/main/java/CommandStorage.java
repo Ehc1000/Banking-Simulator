@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 
 public class CommandStorage {
-    ArrayList<String> accounts = new ArrayList<String>();
+    private ArrayList<String> commandList;
 
+    public CommandStorage() {
+        commandList = new ArrayList<>();
+    }
 
     public void addInvalidCommand(String command) {
-        accounts.add(command);
+        commandList.add(command);
     }
 
     public ArrayList<String> getInvalidCommands() {
-        return accounts;
+        return commandList;
     }
 }
