@@ -27,7 +27,7 @@ public class CommandStorageTest {
     }
 
     @Test
-    void check_invalid_commands_size_is_two() {
+    void check_two_invalid_commands_size_is_two() {
         commandStorage.addInvalidCommand("create cheking 12345678 4.0");
         commandStorage.addInvalidCommand("depost 12345678 800");
         assertEquals(2, commandStorage.getInvalidCommands().size());
