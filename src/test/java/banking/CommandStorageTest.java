@@ -1,7 +1,10 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandStorageTest {
     CommandStorage commandStorage;
@@ -9,6 +12,12 @@ public class CommandStorageTest {
     @BeforeEach
     void setUp() {
         commandStorage = new CommandStorage();
+    }
+
+    @Test
+    void check_that_command_storage_is_empty_by_default() {
+        boolean actual = commandStorage.getInvalidCommands().isEmpty();
+        assertTrue(actual);
     }
 
     @Test
