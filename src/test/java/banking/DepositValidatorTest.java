@@ -52,6 +52,13 @@ public class DepositValidatorTest {
     }
 
     @Test
+    void typo_in_deposit() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = depositValidator.validate("depost 12345678 500");
+        assertFalse(actual);
+    }
+
+    @Test
     void deposit_is_missing() {
         bank.addAccount("12345678", "checking", 5.0);
         boolean actual = depositValidator.validate("12345678 500");

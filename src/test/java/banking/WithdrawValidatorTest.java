@@ -56,6 +56,14 @@ public class WithdrawValidatorTest {
     }
 
     @Test
+    void typo_in_withdraw() {
+        bank.addAccount("12345678", "checking", 5.0);
+        bank.getAccounts().get("12345678").deposit(500);
+        boolean actual = withdrawValidator.validate("wthdraw 12345678 200");
+        assertFalse(actual);
+    }
+
+    @Test
     void withdraw_is_missing() {
         bank.addAccount("12345678", "checking", 5.0);
         bank.getAccounts().get("12345678").deposit(500);

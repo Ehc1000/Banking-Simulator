@@ -15,7 +15,8 @@ public abstract class CommandValidator {
         if (commandType.equalsIgnoreCase("create")
                 || commandType.equalsIgnoreCase("deposit")
                 || commandType.equalsIgnoreCase("withdraw")
-                || commandType.equalsIgnoreCase("transfer")) {
+                || commandType.equalsIgnoreCase("transfer")
+                || commandType.equalsIgnoreCase("pass")) {
             return true;
         }
         return false;

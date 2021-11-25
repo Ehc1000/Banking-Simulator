@@ -143,13 +143,6 @@ public class CreateValidatorTest {
     }
 
     @Test
-    void typo_in_deposit() {
-        bank.addAccount("12345678", "checking", 5.0);
-        boolean actual = createValidator.validate("depost 12345678 500");
-        assertFalse(actual);
-    }
-
-    @Test
     void create_case_sensitive() {
         boolean actual = createValidator.validate("CREATE checking 12345678 5.0");
         assertTrue(actual);

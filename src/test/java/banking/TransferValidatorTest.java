@@ -50,6 +50,12 @@ public class TransferValidatorTest {
     }
 
     @Test
+    void typo_in_transfer() {
+        boolean actual = transferValidator.validate("transfe 98765432 12345678 0");
+        assertFalse(actual);
+    }
+
+    @Test
     void from_id_missing() {
         boolean actual = transferValidator.validate("transfer 12345678 0");
         assertFalse(actual);
