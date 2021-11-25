@@ -13,7 +13,8 @@ public abstract class CommandValidator {
 
     public boolean validateCommand(String commandType) {
         if (commandType.equalsIgnoreCase("create")
-                || commandType.equalsIgnoreCase("deposit")) {
+                || commandType.equalsIgnoreCase("deposit")
+                || commandType.equalsIgnoreCase("withdraw")) {
             return true;
         }
         return false;
@@ -42,8 +43,13 @@ public abstract class CommandValidator {
             }
             return false;
         }
+        if (commandType.equalsIgnoreCase("withdraw")) {
+            if (AccountExists(id) && validId) {
+                return true;
+            }
+            return false;
+        }
         return false;
-
     }
 
     private boolean validateNumericAndEightInLength(String id) {

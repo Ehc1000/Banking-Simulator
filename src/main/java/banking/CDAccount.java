@@ -9,5 +9,10 @@ public class CDAccount extends Account {
     public boolean checkDepositAmount(double value) {
         return false;
     }
+
+    @Override
+    public boolean checkWithdrawalAmount(double value) {
+        return false;
+    }
 }
 

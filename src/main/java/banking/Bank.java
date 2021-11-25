@@ -41,4 +41,10 @@ public class Bank {
         return false;
     }
 
+    public boolean checkWithdrawAmount(String id, Double value) {
+        if (accounts.get(id).checkWithdrawalAmount(value)) {
+            return true;
+        }
+        return false;
+    }
 }

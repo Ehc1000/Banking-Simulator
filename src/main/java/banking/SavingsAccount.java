@@ -12,4 +12,12 @@ public class SavingsAccount extends Account {
         }
         return false;
     }
+
+    @Override
+    public boolean checkWithdrawalAmount(double value) {
+        if (value >= 0.0 && value <= 1000.00) {
+            return true;
+        }
+        return false;
+    }
 }

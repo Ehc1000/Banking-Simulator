@@ -13,6 +13,12 @@ public class CheckingAccount extends Account {
         return false;
     }
 
-
+    @Override
+    public boolean checkWithdrawalAmount(double value) {
+        if (value >= 0.0 && value <= 400.00) {
+            return true;
+        }
+        return false;
+    }
 }
 

@@ -18,6 +18,7 @@ public class CommandStorageTest {
     void check_that_command_storage_is_empty_by_default() {
         boolean actual = commandStorage.getInvalidCommands().isEmpty();
         assertTrue(actual);
+        assertEquals(0, commandStorage.getInvalidCommands().size());
     }
 
     @Test

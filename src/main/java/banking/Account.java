@@ -47,5 +47,7 @@ public abstract class Account {
     }
 
     public abstract boolean checkDepositAmount(double value);
+
+    public abstract boolean checkWithdrawalAmount(double value);
 }
 
