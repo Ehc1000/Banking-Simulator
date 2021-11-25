@@ -41,7 +41,7 @@ public class DepositValidator extends CommandValidator {
         }
         Double value = Double.parseDouble(amount);
         if (bank.accountExistsByID(id)) {
-            if (bank.checkAmount(id, value)) {
+            if (bank.checkDepAmount(id, value)) {
                 return true;
             }
             return false;

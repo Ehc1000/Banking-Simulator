@@ -34,7 +34,7 @@ public class Bank {
         return false;
     }
 
-    public boolean checkAmount(String id, Double value) {
+    public boolean checkDepAmount(String id, Double value) {
         if (accounts.get(id).checkDepositAmount(value)) {
             return true;
         }
