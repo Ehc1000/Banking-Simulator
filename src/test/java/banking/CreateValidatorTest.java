@@ -168,6 +168,12 @@ public class CreateValidatorTest {
     }
 
     @Test
+    void typo_in_cd() {
+        boolean actual = createValidator.validate("create cds 12345678 5.0 5000");
+        assertFalse(actual);
+    }
+
+    @Test
     void create_cd_with_amount_on_boundaries() {
         boolean actual = createValidator.validate("create cd 12345678 5.0 1000");
         boolean actual_two = createValidator.validate("create cd 12345678 5.0 10000");

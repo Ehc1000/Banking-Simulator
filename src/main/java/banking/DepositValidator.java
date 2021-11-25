@@ -28,6 +28,7 @@ public class DepositValidator extends CommandValidator {
         boolean validCommand = validateCommand(commandType);
         boolean validId = validateId(commandType, id);
         boolean validAmount = validateAmountForDeposit(id, amount);
+
         if (validCommand && validId && validAmount) {
             return true;
         }

@@ -26,7 +26,14 @@ public class DepositValidatorTest {
 
     @Test
     void deposit_with_nonexistent_id() {
-        boolean actual = depositValidator.validate("deposit 12345678 5.0 300");
+        boolean actual = depositValidator.validate("deposit 12345678 300");
+        assertFalse(actual);
+    }
+
+    @Test
+    void deposit_with_an_invalid_id() {
+        bank.addAccount("12345678", "checking", 5.0);
+        boolean actual = depositValidator.validate("deposit 12345679 500");
         assertFalse(actual);
     }
 

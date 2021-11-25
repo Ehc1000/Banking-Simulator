@@ -34,5 +34,4 @@ public class MasterControl {
         return commandStorage.getInvalidCommands();
     }
 
-
 }
