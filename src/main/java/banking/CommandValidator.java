@@ -14,7 +14,8 @@ public abstract class CommandValidator {
     public boolean validateCommand(String commandType) {
         if (commandType.equalsIgnoreCase("create")
                 || commandType.equalsIgnoreCase("deposit")
-                || commandType.equalsIgnoreCase("withdraw")) {
+                || commandType.equalsIgnoreCase("withdraw")
+                || commandType.equalsIgnoreCase("transfer")) {
             return true;
         }
         return false;
@@ -44,6 +45,12 @@ public abstract class CommandValidator {
             return false;
         }
         if (commandType.equalsIgnoreCase("withdraw")) {
+            if (AccountExists(id) && validId) {
+                return true;
+            }
+            return false;
+        }
+        if (commandType.equalsIgnoreCase("transfer")) {
             if (AccountExists(id) && validId) {
                 return true;
             }
