@@ -1,6 +1,8 @@
 package banking;
 
 public class CheckingAccount extends Account {
+    private int month;
+
     public CheckingAccount(String name, String id, double apr) {
         super(name, id, apr);
     }
@@ -19,6 +21,11 @@ public class CheckingAccount extends Account {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void incrementMonth(int month) {
+        this.month += month;
     }
 }
 

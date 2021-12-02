@@ -1,10 +1,11 @@
 package banking;
 
 public abstract class Account {
+    protected double balance;
     private String name;
     private String id;
     private double apr;
-    private double balance;
+    private boolean withdrawAvailability = true;
 
     public Account(String name, String id, double apr, double balance) {
         this.name = name;
@@ -49,5 +50,11 @@ public abstract class Account {
     public abstract boolean checkDepositAmount(double value);
 
     public abstract boolean checkWithdrawalAmount(double value);
+
+    public abstract void incrementMonth(int month);
+
+    public void setWithdrawAvailability(boolean flag) {
+        withdrawAvailability = flag;
+    }
 }
 
