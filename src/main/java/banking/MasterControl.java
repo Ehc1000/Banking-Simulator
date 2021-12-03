@@ -1,37 +1,33 @@
 package banking;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MasterControl {
     Bank bank;
-    CreateValidator createValidator;
-    DepositValidator depositValidator;
-    CreateProcessor createProcessor;
-    DepositProcessor depositProcessor;
+    Redirector redirector;
     CommandStorage commandStorage;
 
-    public MasterControl(Bank bank, CreateValidator createValidator, DepositValidator depositValidator,
-                         CreateProcessor createProcessor, DepositProcessor depositProcessor,
+    public MasterControl(Bank bank, Redirector redirector,
                          CommandStorage commandStorage) {
         this.bank = bank;
-        this.createValidator = createValidator;
-        this.depositValidator = depositValidator;
-        this.createProcessor = createProcessor;
-        this.depositProcessor = depositProcessor;
+        this.redirector = redirector;
         this.commandStorage = commandStorage;
     }
 
     public List<String> start(List<String> input) {
         for (String command : input) {
-            if (createValidator.validate(command)) {
-                createProcessor.execute(command);
-            } else if (depositValidator.validate(command)) {
-                depositProcessor.execute(command);
+            if (redirector.validate(command)) {
+                redirector.execute(command);
             } else {
                 commandStorage.addInvalidCommand(command);
             }
         }
-        return commandStorage.getInvalidCommands();
+        return DisplayOutput(commandStorage.getInvalidCommands());
+    }
+
+    private List<String> DisplayOutput(ArrayList<String> invalidCommands) {
+        return bank.getTransactionHistory(invalidCommands);
     }
 
 }

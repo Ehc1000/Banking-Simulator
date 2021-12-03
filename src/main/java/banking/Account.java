@@ -1,6 +1,10 @@
 package banking;
 
+import java.util.ArrayList;
+
 public abstract class Account {
+    public ArrayList<String> transactionHistory = new ArrayList<>();
+
     protected double balance;
     private String name;
     private String id;
@@ -47,6 +51,10 @@ public abstract class Account {
         }
     }
 
+    public ArrayList<String> getTransactionHistory() {
+        return transactionHistory;
+    }
+
     public abstract boolean checkDepositAmount(double value);
 
     public abstract boolean checkWithdrawalAmount(double value);
@@ -55,6 +63,10 @@ public abstract class Account {
 
     public void setWithdrawAvailability(boolean flag) {
         withdrawAvailability = flag;
+    }
+
+    public void updateTransaction(String command) {
+        transactionHistory.add(command);
     }
 }
 

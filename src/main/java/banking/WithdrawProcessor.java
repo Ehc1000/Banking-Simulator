@@ -1,6 +1,7 @@
 package banking;
 
 public class WithdrawProcessor extends CommandProcessor {
+
     public WithdrawProcessor(Bank bank) {
         super(bank);
     }
@@ -11,6 +12,7 @@ public class WithdrawProcessor extends CommandProcessor {
         String id = commands[1];
         Double amount = Double.parseDouble(commands[2]);
         withdrawFromAccount(id, amount);
+        bank.updateTransaction(id, command);
     }
 
     private void withdrawFromAccount(String id, Double amount) {

@@ -1,6 +1,7 @@
 package banking;
 
 public class TransferProcessor extends CommandProcessor {
+
     public TransferProcessor(Bank bank) {
         super(bank);
     }
@@ -12,6 +13,8 @@ public class TransferProcessor extends CommandProcessor {
         String toId = commands[2];
         Double amount = Double.parseDouble(commands[3]);
         transferBetweenAccounts(fromId, toId, amount);
+        bank.updateTransaction(fromId, command);
+        bank.updateTransaction(toId, command);
     }
 
     private void transferBetweenAccounts(String fromId, String toId, Double amount) {

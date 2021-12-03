@@ -12,6 +12,7 @@ public class DepositProcessor extends CommandProcessor {
         String id = commands[1];
         Double amount = Double.parseDouble(commands[2]);
         depositIntoAccount(id, amount);
+        bank.updateTransaction(id, command);
     }
 
     private void depositIntoAccount(String id, Double amount) {

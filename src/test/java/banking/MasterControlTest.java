@@ -22,8 +22,19 @@ public class MasterControlTest {
     void setUp() {
         input = new ArrayList<>();
         Bank bank = new Bank();
-        masterControl = new MasterControl(bank, new CreateValidator(bank), new DepositValidator(bank),
-                new CreateProcessor(bank), new DepositProcessor(bank), new CommandStorage());
+        CreateValidator createValidator = new CreateValidator(bank);
+        DepositValidator depositValidator = new DepositValidator(bank);
+        WithdrawValidator withdrawValidator = new WithdrawValidator(bank);
+        TransferValidator transferValidator = new TransferValidator(bank);
+        PassValidator passValidator = new PassValidator(bank);
+        CreateProcessor createProcessor = new CreateProcessor(bank);
+        DepositProcessor depositProcessor = new DepositProcessor(bank);
+        WithdrawProcessor withdrawProcessor = new WithdrawProcessor(bank);
+        TransferProcessor transferProcessor = new TransferProcessor(bank);
+        PassProcessor passProcessor = new PassProcessor(bank);
+        masterControl = new MasterControl(bank, new Redirector(createValidator, depositValidator, withdrawValidator,
+                transferValidator, passValidator, createProcessor, depositProcessor,
+                withdrawProcessor, transferProcessor, passProcessor), new CommandStorage());
     }
 
     @Test
@@ -64,6 +75,27 @@ public class MasterControlTest {
 
         List<String> actual = masterControl.start(input);
 
-        assertSingleCommand("create checking 12345678 1.0", actual);
+        assertEquals(2, actual.size());
+        assertEquals("create checking 12345678 1.0", actual.get(1));
+    }
+
+    @Test
+    void sample_make_sure_this_passes_unchanged_or_you_will_fail() {
+        input.add("Create savings 12345678 0.6");
+        input.add("Deposit 12345678 700");
+        input.add("Deposit 12345678 5000");
+        input.add("creAte cHecKing 98765432 0.01");
+        input.add("Deposit 98765432 300");
+        input.add("Transfer 98765432 12345678 300");
+        input.add("Pass 1");
+        input.add("Create cd 23456789 1.2 2000");
+        List<String> actual = masterControl.start(input);
+
+        assertEquals(5, actual.size());
+        assertEquals("Savings 12345678 1000.50 0.60", actual.get(0));
+        assertEquals("Deposit 12345678 700", actual.get(1));
+        assertEquals("Transfer 98765432 12345678 300", actual.get(2));
+        assertEquals("Cd 23456789 2000.00 1.20", actual.get(3));
+        assertEquals("Deposit 12345678 5000", actual.get(4));
     }
 }

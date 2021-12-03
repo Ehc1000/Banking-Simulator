@@ -1,12 +1,17 @@
 package banking;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class Bank {
+    public ArrayList<String> transactionHistory = new ArrayList<>();
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private Map<String, Account> accounts;
+
 
     Bank() {
         accounts = new HashMap<>();
@@ -78,9 +83,27 @@ public class Bank {
         }
     }
 
-
     private void applyApr(Account account) {
         double bonus = account.getBalance() * (account.getRate() / 100 / 12);
         account.deposit(bonus);
     }
+
+    public List<String> getTransactionHistory(ArrayList<String> invalidCommands) {
+        for (Account account : accounts.values()) {
+            String type = account.getName().toLowerCase();
+            String accountType = type.substring(0, 1).toUpperCase() + type.substring(1);
+            transactionHistory.add(String.format("%s %s %s %s", accountType, account.getId(),
+                    decimalFormat.format(account.getBalance()), decimalFormat.format(account.getRate())));
+            if (account.getTransactionHistory().size() != 0) {
+                transactionHistory.addAll(account.getTransactionHistory());
+            }
+        }
+        transactionHistory.addAll(invalidCommands);
+        return transactionHistory;
+    }
+
+    public void updateTransaction(String id, String command) {
+        accounts.get(id).updateTransaction(command);
+    }
+
 }
