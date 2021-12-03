@@ -199,7 +199,7 @@ public class WithdrawValidatorTest {
 
     @Test
     void withdrawal_is_not_full_for_cd() {
-        bank.addAccount("12345679", "cd", 8.0, 5000);
+        bank.addAccount("12345679", "cd", 6.0, 5000);
         bank.passTime(12);
         boolean actual = withdrawValidator.validate("withdraw 12345679 1000");
         assertFalse(actual);

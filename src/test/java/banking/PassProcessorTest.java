@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PassProcessorTest {
 
@@ -58,8 +59,16 @@ public class PassProcessorTest {
     }
 
     @Test
-    void close_empty_balance_account() {
+    void close_single_empty_account() {
         createProcessor.execute("create checking 12345678 6.0");
+        passProcessor.execute("pass 1");
+        assertTrue(bank.getAccounts().isEmpty());
+    }
+
+    @Test
+    void close_empty_balance_account_with_multiple_accounts() {
+        createProcessor.execute("create checking 12345678 6.0");
+        createProcessor.execute("create savings 12567890 4.0");
         createProcessor.execute("create savings 98765432 7.0");
         depositProcessor.execute("deposit 98765432 800");
         passProcessor.execute("pass 1");

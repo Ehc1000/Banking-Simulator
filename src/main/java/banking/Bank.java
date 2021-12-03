@@ -51,7 +51,7 @@ public class Bank {
     }
 
     public void passTime(int months) {
-        ArrayList<String> CloseAccount = new ArrayList<String>();
+        ArrayList<String> CloseAccount = new ArrayList<>();
         for (int i = 0; i < months; i++) {
             for (Account account : accounts.values()) {
                 account.incrementMonth(1);
@@ -63,9 +63,9 @@ public class Bank {
                     account.withdraw(25);
                 }
                 if (account.getName().equalsIgnoreCase("cd")) {
-                    for (i = 0; i < 4; i++) {
+                    int j;
+                    for (j = 0; j < 4; j++) {
                         applyApr(account);
-
                     }
                 } else {
                     applyApr(account);
