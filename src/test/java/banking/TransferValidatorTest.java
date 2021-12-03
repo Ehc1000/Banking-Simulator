@@ -139,6 +139,20 @@ public class TransferValidatorTest {
     }
 
     @Test
+    void from_id_is_a_word() {
+        bank.getAccounts().get("12345678").deposit(800);
+        boolean actual = transferValidator.validate("transfer abc 98765432 200");
+        assertFalse(actual);
+    }
+
+    @Test
+    void to_id_is_a_word() {
+        bank.getAccounts().get("12345678").deposit(800);
+        boolean actual = transferValidator.validate("transfer 12345678 abc 200");
+        assertFalse(actual);
+    }
+
+    @Test
     void transfer_amount_on_boundaries_from_checking() {
         bank.getAccounts().get("12345678").deposit(800);
         boolean actual = transferValidator.validate("transfer 12345678 98765432 0");
