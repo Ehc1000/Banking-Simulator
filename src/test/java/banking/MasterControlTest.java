@@ -128,7 +128,7 @@ public class MasterControlTest {
     }
 
     @Test
-    void system_with_only_invalid_commands_once_final_account_closes() {
+    void system_that_contains_only_invalid_commands_once_final_account_closes() {
         input.add("create checking 12345678 5.0");
         input.add("depost 12345678 800");
         input.add("deposit 12345678 800");
